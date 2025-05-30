@@ -1,0 +1,71 @@
+.group-details-container {
+    padding: 20px;
+    margin-left: 30px;
+  }
+  
+  .student-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  
+  .view-button, .delete-button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .view-button {
+    background-color: #1976d2;
+    color: white;
+  }
+  
+  .view-button:hover {
+    background-color: #1565c0;
+  }
+  
+  .delete-button {
+    background-color: #e53935;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .close-button {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #1565c0;
+  }

@@ -1,0 +1,86 @@
+.assignments-page {
+    display: flex;
+    padding: 20px;
+  }
+
+  .assignments-list {
+    flex: 1;
+    margin:  0 0 0 20px ;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+  }
+  .assignments-list ul li{
+    list-style-type: none;
+    margin-top: 40px;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .upload-assignment {
+    flex: 1;
+    margin:  0 0 0 20px ;
+  }
+  
+   h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #8d8d8d;
+  }
+  
+  h3, h4 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form input, form button {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #584bdb;
+  }
+  
+  /* Dropdown Styling */
+label {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  display: block;
+  margin-bottom: 20px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: #6200ea;
+  background-color: #ffffff;
+}
+
+option {
+  font-size: 14px;
+  padding: 10px;
+}

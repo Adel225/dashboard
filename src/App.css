@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+  height: auto; /* Full height */
+}
+
+.sidebar {
+  width: 250px; /* Fixed width */
+  background-color: #f4f4f4; /* Light gray background */
+  padding: 20px;
+  position: fixed; /* Keeps it static */
+  height: 100%;
+  overflow-y: auto; /* Scroll if content overflows */
+}
+
+.main-content {
+  margin-left: 250px; /* Same as the sidebar width */
+  padding: 20px;
+  width: calc(100% - 250px); /* Takes the remaining space */
+  overflow-y: auto;
+}
