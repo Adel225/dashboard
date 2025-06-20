@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# dashboard
+front end of the full project  (still under construction)
+
+
+this project is made almost fully by AI , it is wroking perfectly , the only missing thing is the backend server connection to pass the data , and it is simple since the backend hase been allready done .
+
+
+>>>>>>> 4e4217247284bc4a128149e5469ee38832443954
