@@ -69,3 +69,281 @@
   .delete-button:hover {
     background-color: #b71c1c;
   }
+
+.groups-page {
+  padding: 20px;
+}
+
+.grade-section {
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.grade-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.groups-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.group-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.group-card h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.group-card p {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin: 20px;
+}
+
+.group-card button.delete-group-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.group-card button.delete-group-btn:hover {
+  background-color: #c82333;
+}
+
+.group-card button.delete-group-btn:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.grade-content-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.groups-list-container,
+.unassigned-students-container {
+  flex: 1; /* Distribute space equally */
+  min-width: 300px; /* Minimum width before wrapping */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.unassigned-students-container h4,
+.groups-list-container h4 {
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.students-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.student-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.student-card p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.student-card p strong {
+  color: #000;
+}
+
+.student-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.student-actions button,
+.add-to-group-dropdown select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.view-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.view-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.add-to-group-dropdown select {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  appearance: none; /* Remove default browser dropdown arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 25px; /* Space for custom arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2C197.351L146.2%2C56.652L5.4%2C197.351L0%2C191.951L146.2%2C45.952L292.4%2C191.951L287%2C197.351z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 8px top 50%;
+  background-size: 12px auto;
+}
+
+.add-to-group-dropdown select:hover {
+  background-color: #218838;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+}
+
+.close-modal-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  float: right;
+}
+
+.close-modal-btn:hover {
+  background-color: #5a6268;
+}
+
+/* GroupDetails.js specific styles (reusing student-card, modal-overlay, etc.) */
+.group-details-page {
+  padding: 20px;
+}
+
+.group-details-page h2 {
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.students-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.group-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.group-card-actions .view-students-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-card-actions .view-students-btn:hover {
+  background-color: #0056b3;
+}

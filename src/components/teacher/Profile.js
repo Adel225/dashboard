@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { getAuthData, updateUserPassword, saveAuthData } from '../../utils/auth';
+import React, { useState, useEffect } from 'react';
 import '../student/pages/Profile.css';
 
 const TeacherProfile = () => {
-    const authData = getAuthData();
-    const user = authData?.user;
-
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [passwords, setPasswords] = useState({
         currentPassword: '',
         newPassword: '',
@@ -14,6 +12,31 @@ const TeacherProfile = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    useEffect(() => {
+        const fetchTeacherProfile = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('https://backend-edu-site-5cnm.vercel.app/teacher/profile', {
+                    headers: {
+                        'Authorization': `MonaEdu ${token}`
+                    }
+                });
+                const data = await response.json();
+                if (data.Message === "Done" || data.Message === "Done ") {
+                    setUser(data.user);
+                } else {
+                    setError('Failed to load profile');
+                }
+            } catch (err) {
+                setError('Error loading profile');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTeacherProfile();
+    }, []);
+
     const handleChange = (e) => {
         setPasswords({
             ...passwords,
@@ -21,7 +44,7 @@ const TeacherProfile = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
@@ -32,28 +55,41 @@ const TeacherProfile = () => {
         }
 
         try {
-            const updatedUser = updateUserPassword(
-                user.studentId, // we'll still use this as ID internally
-                passwords.currentPassword,
-                passwords.newPassword
-            );
-
-            // Update the session storage with new user data
-            saveAuthData(updatedUser, authData.rememberMe);
-            
-            setSuccess('Password updated successfully');
-            setPasswords({
-                currentPassword: '',
-                newPassword: '',
-                confirmNewPassword: ''
+            const token = localStorage.getItem('token');
+            const response = await fetch('https://backend-edu-site-5cnm.vercel.app/teacher/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    currentPassword: passwords.currentPassword,
+                    newPassword: passwords.newPassword
+                })
             });
+
+            const data = await response.json();
+            if (data.Message === "Done" || data.Message === "Done ") {
+                setSuccess('Password updated successfully');
+                setPasswords({
+                    currentPassword: '',
+                    newPassword: '',
+                    confirmNewPassword: ''
+                });
+            } else {
+                setError(data.Message || 'Failed to update password');
+            }
         } catch (err) {
-            setError(err.message);
+            setError('Error updating password');
         }
     };
 
-    if (!user) {
+    if (loading) {
         return <div>Loading...</div>;
+    }
+
+    if (!user) {
+        return <div>Error loading profile</div>;
     }
 
     return (

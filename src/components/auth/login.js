@@ -1,47 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { authenticateUser, saveAuthData, getAuthData } from '../../utils/auth';
-import './auth.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import '../auth/auth.css';
+import { API_URL } from '../../config';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        // Check if user is already authenticated
-        const authData = getAuthData();
-        if (authData?.user) {
-            // Redirect based on user role
-            if (authData.user.role === 'teacher') {
-                navigate('/dashboard');
-            } else {
-                navigate(`/student/${authData.user.studentId}`);
-            }
-        }
-    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
         try {
-            const user = authenticateUser(email, password);
-            if (user) {
-                saveAuthData(user, rememberMe);
-                // Redirect based on user role
-                if (user.role === 'teacher') {
-                    navigate('/dashboard');
+            const response = await fetch(`${API_URL}/student/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+
+            const data = await response.json();
+            console.log('Login response:', data); // Debug log
+            
+            if (data.token) {
+                // Store token based on Remember Me choice
+                if (rememberMe) {
+                    localStorage.setItem('token', data.token);
                 } else {
-                    navigate(`/student/${user.studentId}`);
+                    sessionStorage.setItem('token', data.token);
                 }
+                navigate('/student/');
             } else {
-                setError('Invalid email or password');
+                // Display error message from API
+                setError(data.Message || 'Login failed');
             }
         } catch (err) {
             setError('An error occurred during login');
+            console.error('Login error:', err);
         }
     };
 
@@ -63,28 +67,41 @@ const Login = () => {
                     </div>
                     <div className="form-group">
                         <label>Password:</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="form-input"
-                        />
+                        <div className="password-input-container">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="form-input"
+                            />
+                            <span 
+                                className="password-toggle-icon"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
                     </div>
-                    <div className="form-group checkbox">
-                        <label>
+                    <div className="form-group remember-me">
+                        <label className="checkbox-label">
                             <input
                                 type="checkbox"
                                 checked={rememberMe}
                                 onChange={(e) => setRememberMe(e.target.checked)}
                             />
-                            <p>Remember me</p>
+                            <span>Remember Me</span>
                         </label>
                     </div>
                     <button type="submit" className="auth-button">Login</button>
                 </form>
                 <div className="auth-footer">
-                    Don't have an account? <Link to="/signup">Sign Up</Link>
+                    <div className="signup-link">
+                        Don't have an account? <Link to="/signup">Sign Up</Link>
+                    </div>
+                    <div className="teacher-login">
+                        <Link to="/admin/login" className="teacher-login-link">Login as Teacher</Link>
+                    </div>
                 </div>
             </div>
         </div>

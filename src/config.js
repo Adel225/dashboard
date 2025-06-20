@@ -1,0 +1,1 @@
+export const API_URL = 'https://backend-edu-site-5cnm.vercel.app'; 

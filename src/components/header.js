@@ -1,14 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { clearAuthData } from '../utils/auth';
 import '../styles/header.css';
 
 const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    clearAuthData();
-    navigate('/');
+    localStorage.removeItem('token');
+    localStorage.removeItem('studentId');
+    sessionStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (

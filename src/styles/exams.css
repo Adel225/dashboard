@@ -1,59 +1,267 @@
 .exams-page {
     display: flex;
+    gap: 2rem;
     padding: 20px;
-  }
+    min-height: calc(100vh - 64px);
+}
 
-  .exams-list {
+/* Admin specific styles */
+.exams-left {
     flex: 1;
-    margin:  0 0 0 20px ;
-    border-right: 1px solid #ddd;
-    padding-right: 20px;
-  }
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-  .exams-list ul li{
-    list-style-type: none;
-    margin-top: 40px;
-    justify-content: space-between;
-    cursor: pointer;
-    width: 50%;
-    height: 100%;
-  }
-
-  .upload-exam {
+.exams-right {
     flex: 1;
-    margin:  0 0 0 20px ;
-  }
-  
-   h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    color: #8d8d8d;
-  }
-  
-  h3, h4 {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Student specific styles */
+.exams-list {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.exam-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.exam-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
     display: flex;
     flex-direction: column;
-  }
-  
-  form input, form button {
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  form button {
-    background-color: #6c63ff;
+    gap: 1rem;
+}
+
+.exam-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #5A67BA;
+}
+
+.exam-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.exam-name {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.exam-dates {
+    color: #666;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.exam-dates p {
+    margin: 0;
+}
+
+.download-btn {
+    background: #5A67BA;
     color: white;
     border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
     cursor: pointer;
-  }
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: auto;
+}
+
+.download-btn:hover {
+    background: #4c569b;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background: white;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 0.5rem;
+    background: #f8f9fa;
+}
+
+/* Status messages */
+.submit-status {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #f8d7da;
+    border-radius: 4px;
+}
+
+.loading {
+    text-align: center;
+    padding: 1rem;
+    color: #666;
+}
+
+.error {
+    color: #dc3545;
+    padding: 1rem;
+    background: #f8d7da;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Admin specific components */
+.grades-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    margin-bottom: 2rem;
+}
+
+.grade-card {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.grade-card:hover {
+    background: #e9ecef;
+}
+
+.grade-card.selected {
+    background: #5A67BA;
+    color: white;
+}
+
+.grade-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.groups-section {
+    margin-top: 2rem;
+}
+
+.groups-section h3 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.groups-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group-item {
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.group-item:hover {
+    background: #e9ecef;
+}
+
+.group-item.selected {
+    background: #5A67BA;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .exams-page {
+        flex-direction: column;
+    }
+    
+    .exam-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .grades-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+.delete-btn {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px; /* Adjust padding as needed */
+    font-size: 14px;    /* Adjust font size as needed */
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none; /* Prevent text selection on button */
+    border: 1px solid transparent;
+    border-radius: 4px; /* Or your project's standard border-radius */
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   
-  form button:hover {
-    background-color: #584bdb;
+    /* Delete Button Specific Colors */
+    color: #fff; /* White text */
+    background-color: #dc3545; /* Bootstrap's danger red - a common choice */
+    border-color: #dc3545;
+  
+    /* Optional: Add a subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
   }
